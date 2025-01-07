@@ -20,6 +20,7 @@ def train_model(X_train, y_train):
     model
         Trained machine learning model.
     """
+    print("Training model...")
     model = RandomForestClassifier()
     model.fit(X_train, y_train)
 
@@ -76,12 +77,14 @@ def save_model(model, path):
     path : str
         Path to save pickle file.
     """
+    print(f"Saving model to {path}")
     with open(path, "wb") as f:
         pickle.dump(model, f)
 
 
 def load_model(path):
     """ Loads pickle file from `path` and returns it."""
+    print(f"Loading model from {path}")
     with open(path, "rb") as f:
         model = pickle.load(f)
 
@@ -126,8 +129,8 @@ def performance_on_categorical_slice(
     """
     X_slice, y_slice, _, _ = process_data(
         data,
-        categorical_features,
-        label,
+        categorical_features=categorical_features,
+        label=label,
         training=False,
         encoder=encoder,
         lb=lb
